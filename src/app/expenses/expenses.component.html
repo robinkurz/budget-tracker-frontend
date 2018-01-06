@@ -1,0 +1,10 @@
+<div>
+	<input placeholder="Expense">
+	<input placeholder="Reason">
+	<button>Add</button>
+</div>
+<div>
+	<ul>
+		<li *ngFor="let expense of expenses">{{expense.amount}} {{expense.reason}}</li>
+	</ul>
+</div>
