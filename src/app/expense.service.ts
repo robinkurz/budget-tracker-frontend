@@ -15,4 +15,10 @@ export class ExpenseService {
 	return of(EXPENSES);
   }
 
+  addExpense(expense: Expense): Observable<Expense>{
+	//EXPENSES.push(expense);
+  	return of(expense);
+  }
+
+
 }

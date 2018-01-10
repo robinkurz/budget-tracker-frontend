@@ -11,11 +11,16 @@ import { ExpenseService } from '../expense.service';
 export class ExpensesComponent implements OnInit {
 
   expenses: Expense[];
+  currentExpense: string;
 
   constructor(private expenseService: ExpenseService) { }
 
   ngOnInit() {
   	this.getExpenses();
+  }
+
+  onKey(){
+  	 this.currentExpense = '0.0' + this.currentExpense; 
   }
 
   getExpenses(): void{
@@ -24,6 +29,10 @@ export class ExpensesComponent implements OnInit {
   }
 
   add(amount: number, reason: string): void{
+  	this.expenseService.addExpense(
+	{id: 3, amount, reason, date: "10.01.2018"} as Expense)
+	.subscribe(expense => { this.expenses.push(expense); 
+	});
   }
 
 }
