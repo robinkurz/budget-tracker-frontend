@@ -7,6 +7,10 @@ import { ExpensesComponent } from './expenses/expenses.component';
 
 import { ExpenseService } from './expense.service';  
 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +18,10 @@ import { ExpenseService } from './expense.service';
   ],
   imports: [
   	BrowserModule,
-	FormsModule
+    FormsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+        InMemoryDataService, { dataEncapsulation: false })
   ],
   providers: [ ExpenseService ],
   bootstrap: [AppComponent]

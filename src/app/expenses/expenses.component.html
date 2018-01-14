@@ -1,11 +1,11 @@
 <div>
-	<input [(ngModel)]="currentExpense.amount" #expense (keyup)="onKey(expense.value)" placeholder="Expense">
-    <input [(ngModel)]="currentExpense.reason" #reason placeholder="Reason">
+	<input [(ngModel)]="currentExpense.amount" placeholder="Expense">
+    <input [(ngModel)]="currentExpense.reason" placeholder="Reason">
 	<button (click)="add()">Add</button>
 </div>
 <div>
 	<ul>
-        <li *ngIf="currentExpense.amount">{{currentExpense.amount | currency:'EUR'}} {{currentExpense.reason}}</li>
 		<li *ngFor="let expense of expenses">{{expense.amount | currency:'EUR'}} {{expense.reason}}</li>
+        <li *ngIf="currentExpense.amount">{{currentExpense.amount | currency:'EUR'}} {{currentExpense.reason}}</li>
 	</ul>
 </div>

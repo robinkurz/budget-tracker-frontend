@@ -26,12 +26,10 @@ export class ExpensesComponent implements OnInit {
   }
 
   add(): void{
-  	this.expenseService.addExpense(
-	{id: 3,amount: this.currentExpense.amount, reason: this.currentExpense.reason, date: "10.01.2018"} as Expense)
+  	this.expenseService.addExpense(this.currentExpense)
 	.subscribe(expense => { this.expenses.push(expense); 
 	});
-    this.currentExpense.amount = null;
-    this.currentExpense.reason = null;
+    this.currentExpense = new Expense();
   }
 
 }
