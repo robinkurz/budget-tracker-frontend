@@ -16,13 +16,14 @@ import { EXPENSES } from './mock-expenses';
 export class ExpenseService {
 
 
-  private expensesUrl = 'api/expenses';
+  private expensesUrl = 'http://localhost:8080/expenses';
 
   constructor( private http: HttpClient ) {}
 
   getExpenses(): Observable<Expense[]> {
-      return this.http.get<Expense[]>(this.expensesUrl)
+      return this.http.get(this.expensesUrl)
           .pipe(
+            map(data => data._embedded.expenses), 
             tap(expenses => this.log('fetched expenses')),
             catchError(this.handleError('getExpenses', []))
           );
