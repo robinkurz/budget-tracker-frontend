@@ -26,10 +26,28 @@ export class ExpensesComponent implements OnInit {
   }
 
   add(): void{
+  	this.setDate();
   	this.expenseService.addExpense(this.currentExpense)
 	.subscribe(expense => { this.expenses.push(expense); 
 	});
     this.currentExpense = new Expense();
-  }
+    }
+
+    setDate(): void{
+    	// solution: https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript/4929629#4929629
+	var day = today.getDate();
+	var month = today.getMonth() + 1;
+	var year = today.getFullYear();
+
+	if( day < 10 ){
+		day = '0' + day;
+		}
+
+	if( month < 10 ){
+		month = '0' + month;
+	}
+
+    	this.currentExpense.date = day + '.' + month + '.' + year;
+    }
 
 }
