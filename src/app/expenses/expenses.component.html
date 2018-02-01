@@ -6,8 +6,8 @@
   </div>
 <div>
 	<ul>
-		<li *ngFor="let expense of expenses">{{expense.amount | currency:'EUR'}} {{expense.reason}}</li>
-        <li *ngIf="currentExpense.amount">{{currentExpense.amount | currency:'EUR'}} {{currentExpense.reason}}</li>
+		<li *ngFor="let expense of expenses">{{expense.amount | money | currency:'EUR'}} {{expense.reason}}</li>
+        <li *ngIf="currentExpense.amount">{{currentExpense.amount | money | currency:'EUR'}} {{currentExpense.reason}}</li>
 	</ul>
 </div>
 </div>

@@ -10,11 +10,13 @@ import { ExpenseService } from './expense.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { MoneyPipe } from './money.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExpensesComponent
+    ExpensesComponent,
+    MoneyPipe
   ],
   imports: [
   	BrowserModule,
