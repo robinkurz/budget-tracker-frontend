@@ -34,20 +34,21 @@ export class ExpensesComponent implements OnInit {
     }
 
     setDate(): void{
-    	// solution: https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript/4929629#4929629
-	var day = today.getDate();
-	var month = today.getMonth() + 1;
-	var year = today.getFullYear();
+    // solution: https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript/4929629#4929629
+    var today = new Date();
+	var dd = today.getDate();
+	var MM = today.getMonth() + 1;
+	var yyyy = today.getFullYear();
 
-	if( day < 10 ){
-		day = '0' + day;
+	if( dd < 10 ){
+		var day = '0' + dd;
 		}
 
-	if( month < 10 ){
-		month = '0' + month;
+	if( MM < 10 ){
+		var month = '0' + MM;
 	}
 
-    	this.currentExpense.date = day + '.' + month + '.' + year;
+    	this.currentExpense.date = day + '.' + month + '.' + yyyy;
     }
 
 }
