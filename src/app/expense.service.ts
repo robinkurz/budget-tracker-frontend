@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Expense } from './expense';
+import { ExpenseDto } from './expense-dto';
 import { EXPENSES } from './mock-expenses';
 
   const httpOptions = {
@@ -21,7 +22,7 @@ export class ExpenseService {
   constructor( private http: HttpClient ) {}
 
   getExpenses(): Observable<Expense[]> {
-      return this.http.get(this.expensesUrl)
+      return this.http.get<ExpenseDto>(this.expensesUrl)
           .pipe(
             map(data => data._embedded.expenses), 
             tap(expenses => this.log('fetched expenses')),
