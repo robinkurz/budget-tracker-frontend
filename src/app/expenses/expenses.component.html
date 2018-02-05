@@ -2,6 +2,9 @@
  <div>
     Total: {{ calculateTotal() | money | currency:'EUR' }}   
  </div>
+ <div>
+    Expenses/Day: {{ calculateExpensesPerDay() | money | currency:'EUR' }}   
+ </div>
  <div class="input-group">
 	<input [(ngModel)]="currentExpense.amount" placeholder="Expense" class="form-control">
     <input [(ngModel)]="currentExpense.reason" placeholder="Reason" class="form-control">

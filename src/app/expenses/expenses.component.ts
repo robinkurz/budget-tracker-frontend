@@ -59,4 +59,10 @@ export class ExpensesComponent implements OnInit {
         return total;
     }
 
+    calculateExpensesPerDay(): number{
+        var today = new Date();
+        var dd = today.getDate();
+        return this.calculateTotal()/dd;
+    }
+
 }
