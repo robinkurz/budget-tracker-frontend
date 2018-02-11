@@ -17,7 +17,7 @@ import { EXPENSES } from './mock-expenses';
 export class ExpenseService {
 
 
-  private expensesUrl = 'http://localhost:8080/expenses';
+private expensesUrl = 'http://localhost:8080/expenses/?size=100';
 
   constructor( private http: HttpClient ) {}
 

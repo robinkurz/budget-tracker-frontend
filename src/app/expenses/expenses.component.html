@@ -10,10 +10,15 @@
     <input [(ngModel)]="currentExpense.reason" placeholder="Reason" class="form-control">
 	<button (click)="add()" class="btn btn-primary">Add</button>
   </div>
-<div class="card" style="width: 18rem;">
+<div class="card">
+    <ul class="list-group list-group-flush">
+        <li *ngIf="currentExpense.amount || currentExpense.reason" class="list-group-item">{{currentExpense.amount | money | currency:'EUR'}} {{currentExpense.reason}}</li>
+    </ul>
+</div>
+<h2>Expenses this month</h2>
+<div class="card">
     <ul class="list-group list-group-flush">
         <li *ngFor="let expense of expenses" class="list-group-item">{{expense.amount | money | currency:'EUR'}} {{expense.reason}}</li>
-        <li *ngIf="currentExpense.amount || currentExpense.reason" class="list-group-item">{{currentExpense.amount | money | currency:'EUR'}} {{currentExpense.reason}}</li>
     </ul>
 </div>
 </div>
