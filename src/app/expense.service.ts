@@ -7,24 +7,21 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Expense } from './expense';
 import { ExpenseDto } from './expense-dto';
-import { EXPENSES } from './mock-expenses';
 
-  const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-  }
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+}
 
 @Injectable()
 export class ExpenseService {
-
-
-private expensesUrl = 'http://localhost:8080/expenses/?size=100';
+  private expensesUrl = 'http://localhost:8080/expenses/?size=100';
 
   constructor( private http: HttpClient ) {}
 
   getExpenses(): Observable<Expense[]> {
       return this.http.get<ExpenseDto>(this.expensesUrl)
           .pipe(
-            map(data => data._embedded.expenses), 
+            map(data => data._embedded.expenses),
             tap(expenses => this.log('fetched expenses')),
             catchError(this.handleError('getExpenses', []))
           );
