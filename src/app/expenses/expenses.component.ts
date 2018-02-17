@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Expense } from '../expense';
 
-import { ExpenseService } from '../expense.service';  
+import { ExpenseService } from '../expense.service';
 
 @Component({
   selector: 'app-expenses',
@@ -17,52 +17,57 @@ export class ExpensesComponent implements OnInit {
 
   ngOnInit() {
     this.currentExpense = new Expense();
-  	this.getExpenses();
+    this.getExpenses();
   }
 
-  getExpenses(): void{
-	this.expenseService.getExpenses()
-		.subscribe(expenses => this.expenses = expenses);
+  getExpenses(): void {
+    this.expenseService.getExpenses()
+      .subscribe(expenses => this.expenses = expenses);
   }
 
-  add(): void{
-  	this.setDate();
-  	this.expenseService.addExpense(this.currentExpense)
-	.subscribe(expense => { this.expenses.push(expense); 
-	});
+  add(): void {
+    this.setDate();
+    this.expenseService.addExpense(this.currentExpense)
+      .subscribe(expense => { this.expenses.push(expense);
+      });
     this.currentExpense = new Expense();
     }
 
     setDate(): void{
     // solution: https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript/4929629#4929629
-    var today = new Date();
-	var dd = today.getDate();
-	var MM = today.getMonth() + 1;
-	var yyyy = today.getFullYear();
+      const today = new Date();
+      const dd = today.getDate();
+      const MM = today.getMonth() + 1;
+      const yyyy = today.getFullYear();
 
-	if( dd < 10 ){
-		var day = '0' + dd;
-		}
+      let day;
+      if ( dd < 10 ) {
+        day = '0' + dd;
+      } else {
+        day = dd;
+      }
 
-	if( MM < 10 ){
-		var month = '0' + MM;
-	}
-
-    	this.currentExpense.date = day + '.' + month + '.' + yyyy;
+      let month;
+      if ( MM < 10 ) {
+        month = '0' + MM;
+      } else {
+        month = MM;
+      }
+      this.currentExpense.date = day + '.' + month + '.' + yyyy;
     }
 
     calculateTotal(): number{
-        var total = 0;
-        for( var i = 0; i < this.expenses.length; i++ ){
+        let total = 0;
+        for ( let i = 0; i < this.expenses.length; i++ ) {
             total += this.expenses[i].amount;
         }
         return total;
     }
 
-    calculateExpensesPerDay(): number{
-        var today = new Date();
-        var dd = today.getDate();
-        return this.calculateTotal()/dd;
+    calculateExpensesPerDay(): number {
+        const today = new Date();
+        const dd = today.getDate();
+        return this.calculateTotal() / dd;
     }
 
 }
