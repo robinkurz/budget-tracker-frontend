@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { MoneyPipe } from './money.pipe';
+import {DateService} from './date.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { MoneyPipe } from './money.pipe';
     //HttpClientInMemoryWebApiModule.forRoot(
     //    InMemoryDataService, { dataEncapsulation: false })
   ],
-  providers: [ ExpenseService ],
+  providers: [
+    ExpenseService,
+    DateService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
