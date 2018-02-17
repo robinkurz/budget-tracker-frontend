@@ -56,10 +56,12 @@ export class ExpensesComponent implements OnInit {
       this.currentExpense.date = day + '.' + month + '.' + yyyy;
     }
 
-    calculateTotal(): number{
+    calculateTotal(): number {
         let total = 0;
-        for ( let i = 0; i < this.expenses.length; i++ ) {
+        if ( this.expenses != null ) {
+          for ( let i = 0; i < this.expenses.length; i++ ) {
             total += this.expenses[i].amount;
+          }
         }
         return total;
     }
