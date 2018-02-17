@@ -5,6 +5,7 @@ import {MoneyPipe} from './money.pipe';
 import {FormsModule} from '@angular/forms';
 import {ExpenseService} from './expense.service';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
+import {DateService} from './date.service';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,6 +19,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         ExpenseService,
+        DateService,
         HttpClient,
         HttpHandler,
       ],

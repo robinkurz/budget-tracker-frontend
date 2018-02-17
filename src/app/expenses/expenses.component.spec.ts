@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {ExpenseService} from '../expense.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {Expense} from '../expense';
+import {DateService} from '../date.service';
 
 describe('ExpensesComponent', () => {
   let component: ExpensesComponent
@@ -22,6 +23,7 @@ describe('ExpensesComponent', () => {
       ],
       providers: [
         ExpenseService,
+        DateService,
         HttpClient,
         HttpHandler
       ]

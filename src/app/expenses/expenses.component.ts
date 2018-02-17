@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Expense } from '../expense';
 
 import { ExpenseService } from '../expense.service';
+import {DateService} from '../date.service';
 
 @Component({
   selector: 'app-expenses',
@@ -13,7 +14,7 @@ export class ExpensesComponent implements OnInit {
   expenses: Expense[];
   currentExpense: Expense;
 
-  constructor(private expenseService: ExpenseService) { }
+  constructor(private expenseService: ExpenseService, private dateService: DateService) { }
 
   ngOnInit() {
     this.currentExpense = new Expense();
@@ -34,26 +35,7 @@ export class ExpensesComponent implements OnInit {
     }
 
     setDate(): void {
-    // solution: https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript/4929629#4929629
-      const today = new Date();
-      const dd = today.getDate();
-      const MM = today.getMonth() + 1;
-      const yyyy = today.getFullYear();
-
-      let day;
-      if ( dd < 10 ) {
-        day = '0' + dd;
-      } else {
-        day = dd;
-      }
-
-      let month;
-      if ( MM < 10 ) {
-        month = '0' + MM;
-      } else {
-        month = MM;
-      }
-      this.currentExpense.date = day + '.' + month + '.' + yyyy;
+      this.currentExpense.date = this.dateService.getFormattedDate();
     }
 
     calculateTotal(): number {
@@ -67,9 +49,7 @@ export class ExpensesComponent implements OnInit {
     }
 
     calculateExpensesPerDay(): number {
-        const today = new Date();
-        const dd = today.getDate();
-        return this.calculateTotal() / dd;
+        return this.calculateTotal() / this.dateService.getDay();
     }
 
 }
