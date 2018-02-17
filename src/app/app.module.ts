@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expenses/expenses.component';
 
-import { ExpenseService } from './expense.service';  
+import { ExpenseService } from './expense.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -16,7 +16,7 @@ import { MoneyPipe } from './money.pipe';
   declarations: [
     AppComponent,
     ExpensesComponent,
-    MoneyPipe
+    MoneyPipe,
   ],
   imports: [
   	BrowserModule,
