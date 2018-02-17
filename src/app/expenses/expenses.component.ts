@@ -33,7 +33,7 @@ export class ExpensesComponent implements OnInit {
     this.currentExpense = new Expense();
     }
 
-    setDate(): void{
+    setDate(): void {
     // solution: https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript/4929629#4929629
       const today = new Date();
       const dd = today.getDate();
