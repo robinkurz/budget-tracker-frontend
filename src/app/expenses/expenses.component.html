@@ -1,18 +1,24 @@
 <div class="container">
  <div>
-    Total: {{ calculateTotal() | money | currency:'EUR' }}   
+    Total: {{ calculateTotal() | money | currency:'EUR' }}
  </div>
  <div>
-    Expenses/Day: {{ calculateExpensesPerDay() | money | currency:'EUR' }}   
+    Expenses/Day: {{ calculateExpensesPerDay() | money | currency:'EUR' }}
  </div>
  <div class="input-group">
-	<input [(ngModel)]="currentExpense.amount" placeholder="Expense" class="form-control">
-    <input [(ngModel)]="currentExpense.reason" placeholder="Reason" class="form-control">
+   <input [(ngModel)]="currentExpense.amount" placeholder="Expense" class="form-control">
+   <input [(ngModel)]="currentExpense.reason" placeholder="Reason" class="form-control">
+   <input [(ngModel)]="currentTag" (keydown.enter)="onEnterPress()" placeholder="Add tag" class="form-control">
 	<button (click)="add()" class="btn btn-primary">Add</button>
-  </div>
+ </div>
 <div class="card">
     <ul class="list-group list-group-flush">
-        <li *ngIf="currentExpense.amount || currentExpense.reason" class="list-group-item">{{currentExpense.amount | money | currency:'EUR'}} {{currentExpense.reason}}</li>
+        <li
+          *ngIf="currentExpense.amount || currentExpense.reason || tags"
+          class="list-group-item">
+          {{currentExpense.amount | money | currency:'EUR'}} {{currentExpense.reason}}
+          <span *ngFor="let tag of tags" class="badge badge-primary">{{tag}}</span>
+        </li>
     </ul>
 </div>
 <h2>Expenses this month</h2>
@@ -22,3 +28,4 @@
     </ul>
 </div>
 </div>
+

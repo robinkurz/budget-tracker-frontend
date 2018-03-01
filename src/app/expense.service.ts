@@ -21,7 +21,7 @@ export class ExpenseService {
   getExpenses(): Observable<Expense[]> {
       return this.http.get<ExpenseDto>(this.expensesUrl)
           .pipe(
-            map(data => data._embedded.expenses),
+            map(data => data._embedded.expenses ),
             tap(expenses => this.log('fetched expenses')),
             catchError(this.handleError('getExpenses', []))
           );

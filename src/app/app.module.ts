@@ -20,15 +20,14 @@ import {DateService} from './date.service';
     MoneyPipe,
   ],
   imports: [
-  	BrowserModule,
+    BrowserModule,
     FormsModule,
     HttpClientModule,
-    //HttpClientInMemoryWebApiModule.forRoot(
-    //    InMemoryDataService, { dataEncapsulation: false })
   ],
   providers: [
     ExpenseService,
-    DateService ],
+    DateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

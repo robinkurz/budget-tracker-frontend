@@ -3,6 +3,7 @@ import { Expense } from '../expense';
 
 import { ExpenseService } from '../expense.service';
 import {DateService} from '../date.service';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-expenses',
@@ -13,17 +14,27 @@ export class ExpensesComponent implements OnInit {
 
   expenses: Expense[];
   currentExpense: Expense;
+  tags: string[];
+  currentTag: string;
 
-  constructor(private expenseService: ExpenseService, private dateService: DateService) { }
+  constructor(private expenseService: ExpenseService, private dateService: DateService) { this.tags = []; }
 
   ngOnInit() {
     this.currentExpense = new Expense();
     this.getExpenses();
   }
 
+  onEnterPress() {
+    this.tags.push(this.currentTag);
+    this.currentTag = '';
+  }
+
   getExpenses(): void {
     this.expenseService.getExpenses()
-      .subscribe(expenses => this.expenses = expenses);
+      .pipe(
+        map( expenses => expenses.filter( expense => expense.date.includes( this.dateService.getMonthAndYear() ) ) )
+      )
+      .subscribe(expenses => this.expenses = expenses.reverse());
   }
 
   add(): void {

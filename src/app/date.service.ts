@@ -36,4 +36,8 @@ export class DateService {
     return new Date();
   }
 
+  getMonthAndYear(): string {
+    return this.getFormattedDate().substring(3, 9);
+  }
+
 }
