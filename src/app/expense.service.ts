@@ -7,19 +7,21 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Expense } from './expense';
 import { ExpenseDto } from './expense-dto';
+import {DateService} from './date.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-}
+};
 
 @Injectable()
 export class ExpenseService {
-  private expensesUrl = 'http://localhost:8080/expenses/?size=100';
+  private expensesUrl = 'http://localhost:8080/expenses/';
+  private searchUrl = 'search/findByDateContaining?monthAndYear=';
 
-  constructor( private http: HttpClient ) {}
+  constructor( private http: HttpClient, private dateService: DateService) {}
 
   getExpenses(): Observable<Expense[]> {
-      return this.http.get<ExpenseDto>(this.expensesUrl)
+      return this.http.get<ExpenseDto>(this.expensesUrl + this.searchUrl + this.dateService.getMonthAndYear())
           .pipe(
             map(data => data._embedded.expenses ),
             tap(expenses => this.log('fetched expenses')),
