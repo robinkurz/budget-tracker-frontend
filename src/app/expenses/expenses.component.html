@@ -8,7 +8,7 @@
  <div class="input-group">
    <input [(ngModel)]="currentExpense.amount" placeholder="Expense" class="form-control">
    <input [(ngModel)]="currentExpense.reason" placeholder="Reason" class="form-control">
-   <input [(ngModel)]="currentTag" (keydown.enter)="onEnterPress()" placeholder="Add tag" class="form-control">
+   <input [(ngModel)]="currentExpense.date" (keydown.enter)="onEnterPress()" placeholder="Date" class="form-control">
 	<button (click)="add()" class="btn btn-primary">Add</button>
  </div>
 <div class="card">
@@ -26,6 +26,9 @@
     <ul class="list-group list-group-flush">
         <li *ngFor="let expense of expenses" class="list-group-item">{{expense.amount | money | currency:'EUR'}} {{expense.reason}}</li>
     </ul>
+</div>
+<div *ngIf="!expenses.length">
+  Nothing to show
 </div>
 </div>
 

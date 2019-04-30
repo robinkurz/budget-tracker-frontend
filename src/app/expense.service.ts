@@ -21,7 +21,18 @@ export class ExpenseService {
   constructor( private http: HttpClient, private dateService: DateService) {}
 
   getExpenses(): Observable<Expense[]> {
+      console.log(this.dateService.getMonthAndYear());
       return this.http.get<ExpenseDto>(this.expensesUrl + this.searchUrl + this.dateService.getMonthAndYear())
+          .pipe(
+            map(data => data._embedded.expenses ),
+            tap(expenses => this.log('fetched expenses')),
+            catchError(this.handleError('getExpenses', []))
+          );
+  }
+
+  getExpensesFor(date: string): Observable<Expense[]> {
+      console.log(this.dateService.getMonthAndYear());
+      return this.http.get<ExpenseDto>(this.expensesUrl + this.searchUrl + this.dateService.formatMonthAndYear(date))
           .pipe(
             map(data => data._embedded.expenses ),
             tap(expenses => this.log('fetched expenses')),

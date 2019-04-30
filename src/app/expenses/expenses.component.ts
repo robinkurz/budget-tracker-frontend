@@ -21,28 +21,29 @@ export class ExpensesComponent implements OnInit {
 
   ngOnInit() {
     this.currentExpense = new Expense();
+    this.setDate();
     this.getExpenses();
   }
 
   onEnterPress() {
-    this.tags.push(this.currentTag);
-    this.currentTag = '';
+    this.getExpenses();
   }
 
   getExpenses(): void {
-    this.expenseService.getExpenses()
+    this.expenseService.getExpensesFor(this.dateService.formatMonthAndYear(this.currentExpense.date))
       .pipe(
-        map( expenses => expenses.filter( expense => expense.date.includes( this.dateService.getMonthAndYear() ) ) )
+        map( expenses => expenses.filter( expense => expense.date.includes( this.dateService.formatMonthAndYear(this.currentExpense.date) ) ) )
       )
       .subscribe(expenses => this.expenses = expenses.reverse());
   }
 
   add(): void {
-    this.setDate();
     this.expenseService.addExpense(this.currentExpense)
       .subscribe(expense => { this.expenses.push(expense);
       });
+    let chosenDate = this.currentExpense.date;
     this.currentExpense = new Expense();
+    this.currentExpense.date = chosenDate;
     }
 
     setDate(): void {
